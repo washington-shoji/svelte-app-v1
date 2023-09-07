@@ -1,5 +1,15 @@
-<script>
+<script lang="ts">
 	import '../app.css';
+	export const navOptions = [
+		{ page: 'Home', path: '/' },
+		{ page: 'Posts', path: '/posts' }
+	];
+
+	let intSelected = 0;
+
+	function changeComponent(event: number) {
+		intSelected = event;
+	}
 </script>
 
 <nav class="bg-gray-800">
@@ -8,17 +18,16 @@
 			<div class="flex items-center">
 				<div class="hidden md:block">
 					<div class="ml-10 flex items-baseline space-x-4">
-						<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-						<a
-							href="/"
-							class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-							aria-current="page">Home</a
-						>
-						<a
-							href="/posts"
-							class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-							>Posts</a
-						>
+						{#each navOptions as navLink, index}
+							<a
+								href={navLink.path}
+								on:click={() => changeComponent(index)}
+								class="{intSelected === index
+									? 'bg-gray-900'
+									: 'text-gray-300'}  text-white rounded-md px-3 py-2 text-sm font-medium"
+								aria-current="page">{navLink.page}</a
+							>
+						{/each}
 					</div>
 				</div>
 			</div>
@@ -67,17 +76,16 @@
 	<!-- Mobile menu, show/hide based on menu state. -->
 	<div class="md:hidden" id="mobile-menu">
 		<div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-			<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-			<a
-				href="/"
-				class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
-				aria-current="page">Home</a
-			>
-			<a
-				href="/posts"
-				class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-				>Posts</a
-			>
+			{#each navOptions as navLink, index}
+				<a
+					href={navLink.path}
+					on:click={() => changeComponent(index)}
+					class={intSelected === index
+						? 'bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium'
+						: 'hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium'}
+					aria-current="page">{navLink.page}</a
+				>
+			{/each}
 		</div>
 	</div>
 </nav>
