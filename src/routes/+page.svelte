@@ -14,7 +14,7 @@
 	}
 </script>
 
-<div class=" grid justify-items-center grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mx-4 h-full">
+<div class=" grid justify-items-center grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mx-4">
 	{#each products as product}
 		<div class=" flex-col flex gap-10 w-full rounded-md bg-slate-100 shadow-md p-10 m-10">
 			<img class=" shadow-sm rounded-md" src={product.thumbnail} alt="" />
