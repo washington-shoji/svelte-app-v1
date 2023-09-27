@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import type { Product } from '../../../types/prduct';
+	import type { Product } from '../../../types/product';
 
 	onMount(() => {
 		getProduct($page.params.id);
