@@ -4,8 +4,10 @@
 		icon: string;
 		link: string;
 	};
+
 	const menuItems: MenuItem[] = [
 		{ title: 'Dashboard', icon: 'space_dashboard', link: '/' },
+		{ title: 'API', icon: 'graphic_eq', link: '/api' },
 		{ title: 'Book', icon: 'auto_stories', link: '/books' },
 		{ title: 'Author', icon: 'contact_page', link: '/posts' }
 	];
