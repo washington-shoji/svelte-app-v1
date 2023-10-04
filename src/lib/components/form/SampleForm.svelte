@@ -14,6 +14,7 @@
 	<div>
 		<Button
 			on:toggle={toggleShowForm}
+			extClass={'w-full'}
 			icon={'add'}
 			title={'Added data'}
 			colour={'text-white'}
