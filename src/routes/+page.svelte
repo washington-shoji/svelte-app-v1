@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { Product } from '../types/product';
+	import Table from '$lib/components/table/Table.svelte';
 
 	onMount(() => {
 		getProducts();
@@ -15,3 +16,5 @@
 </script>
 
 <div>Page</div>
+
+<Table />
