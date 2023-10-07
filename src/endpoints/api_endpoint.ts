@@ -4,5 +4,6 @@ export const BaseAPIUrl = {
 export const Api = {
 	Login: 'api/login',
 	Account: 'api/account',
-	Book: 'api/book'
+	Book: 'api/book',
+	Dynamic: 'api/dynamic'
 };
