@@ -1,4 +1,4 @@
-import { Api, BaseAPIUrl } from '../../endpoints/api_endpoint';
+import { Api, BaseAPIUrl } from '../../../endpoints/api_endpoint';
 
 export const actions = {
 	addDynamicData: async ({ request }: any) => {
