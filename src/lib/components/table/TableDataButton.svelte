@@ -1,23 +1,15 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-
 	type ButtonType = 'button' | 'submit' | 'reset' | null | undefined;
 	export let buttonType: ButtonType = 'button';
 	export let title: string;
 	export let icon: string;
 	export let extClass = '';
-
-	const dispatch = createEventDispatcher();
-
-	function action() {
-		dispatch('action');
-	}
 </script>
 
 <td class="pl-4">
 	<button
 		type={buttonType}
-		on:click={action}
+		on:click
 		class="flex gap-2 items-center hover:ring-2 hover:ring-offset-2 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded focus:outline-none {extClass}"
 	>
 		<span class="material-symbols-outlined">{icon}</span>
