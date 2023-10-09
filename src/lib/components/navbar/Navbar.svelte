@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+	import Button from '../button/Button.svelte';
+
 	type MenuItem = {
 		title: string;
 		icon: string;
@@ -12,24 +15,32 @@
 		{ title: 'Author', icon: 'contact_page', link: '/posts' }
 	];
 
-	let intSelected = 0;
+	let isOpen = false;
 
-	function changeComponent(index: number) {
-		intSelected = index;
+	function toggleIsOpen(): void {
+		isOpen = !isOpen;
 	}
 </script>
 
-<div class=" flex flex-col px-2 bg-black text-zinc-50">
+<button
+	class="{isOpen
+		? ' bg-red-600 left-28'
+		: ''} inline-flex p-1 m-1 fixed top-4 left-0 bg-black text-white rounded-md shadow-md"
+	on:click={toggleIsOpen}
+>
+	<span class="material-symbols-outlined">{isOpen ? 'cancel' : 'left_panel_open'}</span>
+</button>
+
+<div class={isOpen ? 'flex flex-col px-2 bg-black text-zinc-50' : 'hidden'}>
 	<h2 class=" mt-6 text-lg uppercase shadow-2xl">Proto App</h2>
 	<div class=" flex flex-col justify-between h-full shadow-2xl">
 		<div class=" mt-6">
 			{#each menuItems as item, idx}
 				<a
-					class="{intSelected == idx
+					class="{item.link === $page.route.id
 						? 'bg-slate-50 text-black'
 						: 'bg-slate-50 bg-opacity-10'} flex gap-1 p-1 rounded-sm my-2 hover:bg-slate-50 hover:text-black"
 					href={item.link}
-					on:click={() => changeComponent(idx)}
 				>
 					<span class="material-symbols-outlined">{item.icon}</span>
 					<span>{item.title}</span>
