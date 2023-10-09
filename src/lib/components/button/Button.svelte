@@ -20,8 +20,8 @@
 <button
 	type={buttonType}
 	on:click={action}
-	class="relative flex justify-center items-center px-5 py-2.5 font-medium tracking-wide
-	capitalize rounded-md hover:fill-current focus:outline-none transition duration-300 transform active:scale-95 ease-in-out {background} {colour} {bgHover} {textHover} {extClass}"
+	class="w-full sm:w-auto relative flex justify-center items-center px-5 py-2.5 font-medium tracking-wide
+	capitalize rounded-md hover:fill-current focus:outline-none transition duration-300 transform active:scale-95 ease-in-out shadow-md {background} {colour} {bgHover} {textHover} {extClass}"
 >
 	<span class="material-symbols-outlined">{icon}</span>
 	<span class="pl-2 mx-1">{title}</span>
