@@ -6,7 +6,7 @@
 <div class=" max-h-screen h-screen flex flex-no-wrap">
 	<Navbar />
 
-	<div class=" w-full overflow-y-scroll py-10 px-6">
+	<div class=" w-full overflow-y-scroll py-10 px-0 sm:px-6">
 		<slot />
 	</div>
 </div>
