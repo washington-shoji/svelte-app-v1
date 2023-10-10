@@ -1,23 +1,43 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { enhance } from '$app/forms';
+	import JSONTree from 'svelte-json-tree';
 	import Button from '../button/Button.svelte';
 	import Input from '../input/Input.svelte';
+
+	type FormData = {
+		name: string;
+		address: string;
+		plz: string;
+		city: string;
+	};
+
+	let name = '';
+	let address = '';
+	let plz = '';
+	let city = '';
+
+	$: value = {
+		name: name,
+		address: address,
+		plz: plz,
+		city: city
+	};
 
 	export let navigatePath: string = '';
 	export let formAction: string;
 	export let formMethod: string;
 	export let id: string = '';
-	export let formData: any | null;
+	export const formData: FormData = value;
 
 	function navigate(): void {
 		goto(navigatePath);
 	}
 </script>
 
-<div class="m-auto md:max-w-3xl">
+<div class="flex flex-col md:flex-row gap-4 mx-1 md:m-auto md:max-w-5xl">
 	<div>
-		<form action={formAction} method={formMethod}>
+		<form action={formAction} method={formMethod} use:enhance>
 			<input type="hidden" name="id" value={id} />
 			<div class="mt-5 bg-white rounded-lg shadow">
 				<div class="flex">
@@ -27,14 +47,14 @@
 					</div>
 				</div>
 				<div class="px-5 pb-5">
-					<Input impPlaceholder={'Name'} formName={'name'} inputValue={formData?.name} />
-					<Input impPlaceholder={'Address'} formName={'address'} inputValue={formData?.address} />
+					<Input impPlaceholder={'Name'} formName={'name'} bind:inputValue={name} />
+					<Input impPlaceholder={'Address'} formName={'address'} bind:inputValue={address} />
 					<div class="flex flex-col md:flex-row">
 						<div class="flex-grow md:w-1/4 md:pr-2">
-							<Input impPlaceholder={'PLZ'} formName={'plz'} inputValue={formData?.plz} />
+							<Input impPlaceholder={'PLZ'} formName={'plz'} bind:inputValue={plz} />
 						</div>
 						<div class="flex-grow">
-							<Input impPlaceholder={'City'} formName={'city'} inputValue={formData?.city} />
+							<Input impPlaceholder={'City'} formName={'city'} bind:inputValue={city} />
 						</div>
 					</div>
 				</div>
@@ -57,5 +77,17 @@
 				</div>
 			</div>
 		</form>
+	</div>
+	<div class=" mt-5 bg-white rounded-lg shadow">
+		<div
+			class=" pt-5 px-5"
+			style="
+			--json-tree-string-color: red;	
+			--json-tree-property-color: blue;
+			--json-tree-font-size:16;
+			"
+		>
+			<JSONTree {value} />
+		</div>
 	</div>
 </div>
