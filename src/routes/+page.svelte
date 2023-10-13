@@ -15,7 +15,11 @@
 </script>
 
 <div>
-	<div class="grid grid-cols-1 md:grid-cols-4">
+	<div class="bg-red-300">
+		<h5>1</h5>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-4 my-4">
 		<div class="bg-red-300">
 			<h5>1</h5>
 		</div>
@@ -41,16 +45,19 @@
 		<div class="bg-blue-300">
 			<h5>2</h5>
 		</div>
+	</div>
 
-		<div class="bg-green-300">
-			<h5>3</h5>
+	<div class="grid grid-cols-1 md:grid-cols-2 my-4">
+		<div class="bg-red-300">
+			<h5>1</h5>
 		</div>
 
-		<div class="bg-orange-300">
-			<h5>4</h5>
+		<div class="bg-blue-300">
+			<h5>2</h5>
 		</div>
 	</div>
 </div>
+
 <!-- Grid wrapper -->
 <div class="grid grid-cols-1 md:grid-cols-2">
 	<!-- Columns -->
