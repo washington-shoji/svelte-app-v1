@@ -18,3 +18,10 @@ export interface Product {
 	thumbnail: string;
 	images: string[];
 }
+
+export type SimpleCardType = {
+	title: string;
+	info: string;
+	icon: string;
+	colour: string;
+};
