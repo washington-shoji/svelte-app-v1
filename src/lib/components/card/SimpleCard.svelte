@@ -5,7 +5,7 @@
 	export let cardColour = 'bg-black';
 </script>
 
-<div class="rounded-md shadow-md max-w-[180px] {cardColour}">
+<div class="rounded-md shadow-md sm:max-w-[180px] md:max-w-[380px] {cardColour}">
 	<div class=" flex items-center gap-3 p-3">
 		<span class="material-symbols-outlined p-2 bg-white rounded-md">{icon}</span>
 		<div class=" text-white">
