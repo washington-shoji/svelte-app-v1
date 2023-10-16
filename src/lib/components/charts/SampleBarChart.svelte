@@ -11,6 +11,7 @@
 		type ChartItem
 	} from 'chart.js';
 	import { onMount } from 'svelte';
+	import { CHART_COLORS } from '../../../utils/colours';
 
 	Chart.register(Colors, BarController, BarElement, CategoryScale, LinearScale, Legend, Tooltip);
 
@@ -37,7 +38,7 @@
 					{
 						label: 'Acquisitions by year',
 						data: data.map((row) => row.count),
-						backgroundColor: '#000000',
+						backgroundColor: CHART_COLORS.black,
 						borderWidth: 2,
 						borderRadius: 6,
 						borderColor: 'white',
@@ -51,7 +52,7 @@
 					legend: {
 						display: true,
 						labels: {
-							color: '#000000',
+							color: CHART_COLORS.black,
 							font: {
 								size: 14
 							}
@@ -79,7 +80,9 @@
 	});
 </script>
 
-<div class="h-[30vh] w-[100vw] sm:h-[50vh] sm:w-[60vw]">
+<div
+	class="h-[35vh] sm:h-[35vh] sm:w-[40vw] md:h-[40vh] md:w-[50vw] lg:h-[60vh] lg:w-[55vw] rounded-md shadow-md bg-black/[0.05] flex items-center"
+>
 	<canvas bind:this={canvas} />
 </div>
 
