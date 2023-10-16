@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import Button from '../button/Button.svelte';
 
 	type MenuItem = {
 		title: string;
@@ -12,7 +11,8 @@
 		{ title: 'Dashboard', icon: 'space_dashboard', link: '/' },
 		{ title: 'API', icon: 'graphic_eq', link: '/api' },
 		{ title: 'Book', icon: 'auto_stories', link: '/books' },
-		{ title: 'Author', icon: 'contact_page', link: '/posts' }
+		{ title: 'Author', icon: 'contact_page', link: '/posts' },
+		{ title: 'Map', icon: 'route', link: '/map' }
 	];
 
 	let isOpen = false;
@@ -25,13 +25,13 @@
 <button
 	class="{isOpen
 		? ' bg-red-600 left-28'
-		: ''} inline-flex p-1 m-1 fixed top-4 left-0 bg-black text-white rounded-md shadow-md"
+		: ''} inline-flex p-1 m-1 fixed top-4 left-0 bg-black text-white rounded-md shadow-md z-30"
 	on:click={toggleIsOpen}
 >
 	<span class="material-symbols-outlined">{isOpen ? 'cancel' : 'left_panel_open'}</span>
 </button>
 
-<div class={isOpen ? 'flex flex-col px-2 bg-black text-zinc-50' : 'hidden'}>
+<div class={isOpen ? 'flex flex-col px-2 bg-black text-zinc-50 z-20' : 'hidden'}>
 	<h2 class=" mt-6 text-lg uppercase shadow-2xl">Proto App</h2>
 	<div class=" flex flex-col justify-between h-full shadow-2xl">
 		<div class=" mt-6">
