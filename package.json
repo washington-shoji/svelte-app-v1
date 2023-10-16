@@ -15,6 +15,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
+		"@types/mapbox-gl": "^2.7.15",
 		"autoprefixer": "^10.4.15",
 		"postcss": "^8.4.29",
 		"prettier": "^2.8.0",
@@ -29,7 +30,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@deck.gl/layers": "^8.9.31",
 		"chart.js": "^4.4.0",
+		"deck.gl": "^8.9.31",
+		"mapbox-gl": "^2.15.0",
 		"svelte-json-tree": "^2.1.0"
 	}
 }
