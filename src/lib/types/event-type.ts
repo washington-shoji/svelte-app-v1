@@ -20,5 +20,5 @@ export type EventDataReq = {
 		date: string;
 		registration: string;
 	};
-	imageHeader: HTMLInputElement;
+	imageHeader?: HTMLInputElement;
 };
