@@ -4,11 +4,6 @@
 	import Table from '$lib/components/table/Table.svelte';
 	import { goto } from '$app/navigation';
 
-	type DataResponse = {
-		id: string;
-		data: any;
-	};
-
 	const apiUrl = `${BaseAPIUrl.Local}/${Api.Dynamic}`;
 	onMount(() => {
 		fetchDynamicData();
