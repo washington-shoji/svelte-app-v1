@@ -36,7 +36,6 @@
 	}
 
 	function editData(event: any): void {
-		console.warn('event', event);
 		goto(`/event/create/?id=${event.detail.id}`);
 	}
 
