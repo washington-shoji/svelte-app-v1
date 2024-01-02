@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { Api, BaseAPIUrl } from '../../endpoints/api_endpoint';
+	import { Api, BaseAPIUrl } from '../../../lib/endpoints/api_endpoint';
 	import type { EventData } from '$lib/types/event-type';
 	import EventTable from '$lib/components/event-table/EventTable.svelte';
 
@@ -36,7 +36,7 @@
 	}
 
 	function editData(event: any): void {
-		goto(`/event/create/?id=${event.detail.id}`);
+		goto(`event/create/?id=${event.detail.id}`);
 	}
 
 	function deleteData(event: any): void {
