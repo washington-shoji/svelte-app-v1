@@ -12,7 +12,7 @@
 		dispatch('edit', data);
 	}
 
-	function deleteAction(id?: string) {
+	function deleteAction(id?: EventData) {
 		dispatch('delete', id);
 	}
 </script>
@@ -39,13 +39,13 @@
 				<tbody>
 					{#each tableData as item}
 						<tr tabindex="0" class="focus:outline-none h-16 border border-gray-100 rounded">
-							<div class=" flex justify-center items-center h-[120px] w-[120px]">
-								<img src={item.imageUrl} alt={item.title} />
+							<div class=" flex justify-center items-center h-[120px] w-[120px] px-1">
+								<img class=" rounded-md" src={item.imageUrl} alt={item.title} />
 							</div>
 							<TableDataBold data={item.title} />
 							<TableData
 								extClass={'py-3 px-3 text-sm focus:outline-none bg-red-100 rounded'}
-								data={item.description}
+								data={item.shortDescription}
 							/>
 
 							<TableDataTime data={item.date} />
@@ -58,7 +58,7 @@
 								extClass={'hover:ring-black hover:text-black hover:bg-gray-200'}
 							/>
 							<TableDataButton
-								on:click={() => deleteAction(item.id)}
+								on:click={() => deleteAction(item)}
 								icon={'delete'}
 								title={'Delete'}
 								extClass={'hover:ring-red-600 hover:text-red-600 hover:bg-gray-200 hover:bg-red-200'}
