@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { BaseAPIUrl, Api } from '../../endpoints/api_endpoint';
+
 	import Table from '$lib/components/table/Table.svelte';
 	import { goto } from '$app/navigation';
+	import { Api, BaseAPIUrl } from '$lib';
 
 	const apiUrl = `${BaseAPIUrl.Local}/${Api.Dynamic}`;
 	onMount(() => {
