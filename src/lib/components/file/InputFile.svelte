@@ -2,10 +2,15 @@
 	export let impPlaceholder = 'Placeholder';
 	export let formName = 'formName';
 	export let inputValue: HTMLInputElement;
+	export let inputImageUrl: string | null = null;
 
 	let container;
 	let image: HTMLImageElement;
 	let showImage = false;
+
+	if (inputValue) {
+		showImage = true;
+	}
 
 	function onChange(event: Event & { currentTarget: EventTarget & HTMLInputElement }) {
 		if (event.currentTarget.files) {
@@ -38,7 +43,7 @@
 	/>
 	<label
 		for="imageHeader"
-		class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
+		class="relative flex min-h-[200px] items-center justify-around rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
 	>
 		<div>
 			<span class="mb-2 block text-xl font-semibold"> Drop files here </span>
@@ -47,18 +52,26 @@
 				Browse
 			</span>
 		</div>
+		<div bind:this={container}>
+			{#if showImage}
+				<div
+					class=" flex flex-col gap-2 justify-center items-center rounded-md max-w-[400px] max-h-[400px] m-auto p-4"
+				>
+					<span class=" text-xs text-black/60">Image preview</span>
+					<img bind:this={image} src="" alt="Preview" />
+				</div>
+			{:else}
+				<div
+					class=" flex flex-col gap-2 justify-center items-center rounded-md max-w-[400px] max-h-[400px] m-auto p-4"
+				>
+					{#if inputImageUrl}
+						<span class=" text-xs text-black/60">Image preview</span>
+						<img src={inputImageUrl} alt="" />
+					{:else}
+						<span class="material-symbols-outlined">image</span>
+					{/if}
+				</div>
+			{/if}
+		</div>
 	</label>
-	<div bind:this={container}>
-		{#if showImage}
-			<div
-				class=" flex justify-center items-center rounded-md max-w-[400px] max-h-[400px] m-auto p-4"
-			>
-				<img bind:this={image} src="" alt="Preview" />
-			</div>
-		{:else}
-			<div class=" flex justify-center items-center m-4 rounded-md">
-				<span class="material-symbols-outlined">image</span>
-			</div>
-		{/if}
-	</div>
 </div>
