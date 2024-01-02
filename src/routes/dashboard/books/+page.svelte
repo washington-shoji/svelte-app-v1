@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { Api, BaseAPIUrl } from '$lib';
 	import { onMount } from 'svelte';
-	import { Api, BaseAPIUrl } from '../../endpoints/api_endpoint';
 
 	onMount(() => {
 		getBooks();
