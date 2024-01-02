@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 	import { Button, Input, InputFile } from '$lib';
 	import DatePicker from '$lib/components/input/DatePicker.svelte';
 	import TextArea from '$lib/components/input/TextArea.svelte';
-	import type { EventDataReq } from '$lib/types/event-type';
 	import { Api, BaseAPIUrl } from '../../../endpoints/api_endpoint';
 
 	let title = '';
@@ -21,16 +19,29 @@
 			title: title,
 			shortDescription: shortDescription,
 			description: description,
+			imageUrl: imageUrl,
+			publicId: publicId,
 			date: date,
 			registration: registration
 		},
 		imageHeader: imageHeader
 	};
 
+	export let id: string = '';
 	export let navigatePath: string = '';
 	export let formAction: string;
 	export let formMethod: string;
-	export const formData: EventDataReq = value;
+	export let formData: any = value;
+
+	if (formData) {
+		title = formData.title;
+		shortDescription = formData.shortDescription;
+		description = formData.description;
+		imageUrl = formData.imageUrl;
+		publicId = formData.publicId;
+		date = new Date(formData.date).toISOString().substring(0, 16);
+		registration = new Date(formData.registration).toISOString().substring(0, 16);
+	}
 
 	const today = new Date().toISOString().substring(0, 16);
 
@@ -40,7 +51,7 @@
 
 	const url = `${BaseAPIUrl.Local}/${Api.Event}`;
 
-	async function createEvent() {
+	async function createEvent(): Promise<void> {
 		const body = new FormData();
 		body.set('eventDetails', JSON.stringify(value.eventDetails));
 		if (value.imageHeader.files) {
@@ -53,16 +64,39 @@
 			headers: {}
 		})
 			.then((response) => {
-				console.warn('response', response);
+				console.warn('create response', response);
+				navigate();
 			})
 			.catch((error: any) => {
-				console.warn('error', error);
+				console.warn('create error', error);
+			});
+	}
+
+	async function updateEvent(): Promise<void> {
+		const body = new FormData();
+		body.set('eventDetails', JSON.stringify(value.eventDetails));
+		if (value.imageHeader.files) {
+			body.set('imageHeader', value.imageHeader.files[0]);
+		}
+
+		await fetch(`${url}/${id}`, {
+			method: 'PATCH',
+			body: body,
+			headers: {}
+		})
+			.then((response) => {
+				console.warn('update response', response);
+				navigate();
+			})
+			.catch((error: any) => {
+				console.warn('update error', error);
 			});
 	}
 </script>
 
 <div>
-	<form action={formAction} method={formMethod} use:enhance enctype="multipart/form-data">
+	<form action={formAction} method={formMethod} enctype="multipart/form-data">
+		<input type="hidden" name="id" value={id} />
 		<div class="mt-5 bg-white rounded-lg shadow">
 			<div class="flex">
 				<div class="flex-1 flex align-middle py-5 pl-5 overflow-hidden">
@@ -108,6 +142,7 @@
 					<InputFile
 						impPlaceholder={'Image file'}
 						formName={'imageHeader'}
+						inputImageUrl={imageUrl}
 						bind:inputValue={imageHeader}
 					/>
 				</div>
@@ -116,7 +151,23 @@
 			<hr class="mt-4" />
 			<div class="flex flex-col-reverse gap-2 sm:flex-row-reverse p-3">
 				<div class="flex-initial md:pl-3">
-					<Button buttonType={'submit'} icon={'save'} colour={'text-white'} />
+					{#if id && formData}
+						<Button
+							buttonType={'button'}
+							title={'Update Event'}
+							icon={'save'}
+							colour={'text-white'}
+							on:action={updateEvent}
+						/>
+					{:else}
+						<Button
+							buttonType={'button'}
+							title={'Save Event'}
+							icon={'save'}
+							colour={'text-white'}
+							on:action={createEvent}
+						/>
+					{/if}
 				</div>
 				<div class="flex-initial">
 					<Button
