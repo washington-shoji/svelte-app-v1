@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { EventForm } from '$lib';
+	import { Api, BaseAPIUrl, EventForm } from '$lib';
 	import type { EventDataReq } from '$lib/types/event-type';
-	import { Api, BaseAPIUrl } from '../../../endpoints/api_endpoint';
 
 	let id = $page.url.searchParams.get('id');
 	const url = `${BaseAPIUrl.Local}/${Api.Event}`;
@@ -26,12 +25,16 @@
 			<EventForm
 				formAction={'?/updateData'}
 				formMethod={'PATCH'}
-				navigatePath={'/event'}
+				navigatePath={'/dashboard/event'}
 				formData={response}
 				{id}
 			/>
 		{:else}
-			<EventForm formAction={'?/createData'} formMethod={'POST'} navigatePath={'/event'} />
+			<EventForm
+				formAction={'?/createData'}
+				formMethod={'POST'}
+				navigatePath={'/dashboard/event'}
+			/>
 		{/if}
 	{/await}
 </div>
