@@ -1,6 +1,5 @@
 import type { Actions } from './$types';
-import { BaseAPIUrl, Api } from '../../../endpoints/api_endpoint';
-import type { EventDataReq } from '$lib/types/event-type';
+import { Api, BaseAPIUrl } from '$lib';
 
 const url = `${BaseAPIUrl.Local}/${Api.Event}`;
 export const actions = {
