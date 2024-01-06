@@ -22,7 +22,7 @@
 	<!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
 
 	<div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
-		<TableActionHeader navigatePath={'/api/create'} />
+		<TableActionHeader addLabel={'Task'} navigatePath={'/api/create'} />
 
 		<div class="mt-7 overflow-x-auto">
 			<table class="w-full whitespace-nowrap">
