@@ -7,6 +7,7 @@
 </script>
 
 <input
+	id="myDate"
 	type="datetime-local"
 	placeholder={impPlaceholder}
 	name={formName}
