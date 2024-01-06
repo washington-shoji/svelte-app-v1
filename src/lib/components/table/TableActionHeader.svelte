@@ -2,6 +2,7 @@
 	import Button from '../button/Button.svelte';
 
 	export let navigatePath: string = '';
+	export let addLabel: string = '';
 </script>
 
 <div class="flex flex-col gap-2 sm:flex sm:flex-row items-center justify-between">
@@ -17,7 +18,7 @@
 	</div>
 	<a class=" w-full sm:w-auto" href={navigatePath}>
 		<Button
-			title={'Add Task'}
+			title={`Add ${addLabel}`}
 			icon={'add'}
 			colour={'text-white'}
 			extClass={'inline-flex items-start justify-start'}
