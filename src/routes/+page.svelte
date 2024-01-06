@@ -1,56 +1,44 @@
 <script lang="ts">
+	import { Api, BaseAPIUrl, type EventData } from '$lib';
+	import PublicEventCard from '$lib/components/event-card/PublicEventCard.svelte';
 	import { onMount } from 'svelte';
-	import type { Product, SimpleCardType } from '../types/product';
-	import SimpleCard from '$lib/components/card/SimpleCard.svelte';
-	import SimpleNotification from '$lib/components/notification/SimpleNotification.svelte';
-	import SampleBarChart from '$lib/components/charts/SampleBarChart.svelte';
-	import SamplePieChart from '$lib/components/charts/SamplePieChart.svelte';
 
+	const apiUrl = `${BaseAPIUrl.Local}/${Api.Event}`;
 	onMount(() => {
-		//getProducts();
+		fetchEventData();
 	});
-	const productUrl = 'https://dummyjson.com/products?limit=10';
-	let products: Product[] = [];
-	async function getProducts() {
-		const response = await fetch(productUrl);
-		const data = await response.json();
-		products = data.products;
-	}
 
-	const cards: SimpleCardType[] = [
-		{ title: 'Card 1', info: '1000', icon: 'info', colour: 'bg-black' },
-		{ title: 'Card 2', info: '10', icon: 'schema', colour: 'bg-green-300' },
-		{ title: 'Card 3', info: '3000', icon: 'settings_accessibility', colour: 'bg-blue-300' },
-		{ title: 'Card 4', info: '1', icon: 'troubleshoot', colour: 'bg-red-500' }
-	];
+	let response: EventData[];
+	$: eventData = [] as EventData[];
+
+	async function fetchEventData() {
+		response = await fetch(apiUrl, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then((response) => response.json());
+		eventData = response;
+	}
 </script>
 
-<div>
-	<SimpleNotification />
-
-	<div class="grid grid-cols-1 gap-2 sm:grid-cols-4 my-4">
-		{#each cards as card}
-			<SimpleCard title={card.title} info={card.info} icon={card.icon} cardColour={card.colour} />
-		{/each}
+<main class="flex flex-col items-center justify-center lg:w-4/5 min-h-screen m-auto">
+	<div class=" flex flex-col gap-4 items-center justify-center p-8">
+		<h1 class=" text-center text-3xl font-bold tracking-tight">
+			Welcome to Event Now - Where Your Event Dreams Come Alive!
+		</h1>
+		<p class=" text-center tracking-tight">
+			Our passion is to bring your vision to life, transforming your ideas into unforgettable
+			experiences. From intimate gatherings to grand-scale celebrations, we are your partners in
+			crafting events that are not just events, but lifetime memories.
+		</p>
 	</div>
-
-	<div class="grid grid-cols-1 sm:grid-cols-5 md:grid-cols-6 my-4">
-		<div class="sm:col-span-3 md:col-span-4">
-			<SampleBarChart />
-		</div>
-
-		<div class=" sm:col-span-2 md:col-span-2 rounded-md shadow-md bg-black">
-			<h5 class=" text-white">2</h5>
-		</div>
-	</div>
-
-	<div class="grid grid-cols-1 sm:grid-cols-5 md:grid-cols-6 my-4">
-		<div class=" sm:col-span-3 md:col-span-2">
-			<SamplePieChart />
-		</div>
-
-		<div class="sm:col-span-2 md:col-span-4 rounded-md shadow-md bg-black">
-			<h5 class=" text-white">2</h5>
+	<div class=" flex flex-col gap-4 items-center justify-center p-8">
+		<h2 class=" text-center text-lg font-semibold">All the latest events</h2>
+		<div class=" grid sm:grid-cols-2 gap-4">
+			{#each eventData as event}
+				<PublicEventCard eventData={event} />
+			{/each}
 		</div>
 	</div>
-</div>
+</main>
