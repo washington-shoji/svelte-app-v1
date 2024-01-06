@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { Button, Input, InputFile } from '$lib';
+	import { Api, BaseAPIUrl, Button, Input, InputFile } from '$lib';
 	import DatePicker from '$lib/components/input/DatePicker.svelte';
 	import TextArea from '$lib/components/input/TextArea.svelte';
-	import { Api, BaseAPIUrl } from '../../../endpoints/api_endpoint';
 
 	let title = '';
 	let shortDescription = '';
