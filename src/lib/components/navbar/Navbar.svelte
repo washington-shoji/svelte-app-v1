@@ -8,11 +8,12 @@
 	};
 
 	const menuItems: MenuItem[] = [
-		{ title: 'Dashboard', icon: 'space_dashboard', link: '/' },
-		{ title: 'API', icon: 'graphic_eq', link: '/api' },
-		{ title: 'Book', icon: 'auto_stories', link: '/books' },
-		{ title: 'Author', icon: 'contact_page', link: '/posts' },
-		{ title: 'Map', icon: 'route', link: '/map' }
+		{ title: 'Dashboard', icon: 'space_dashboard', link: '/dashboard' },
+		{ title: 'Event', icon: 'calendar_clock', link: '/dashboard/event' },
+		{ title: 'API', icon: 'graphic_eq', link: '/dashboard/api' },
+		{ title: 'Book', icon: 'auto_stories', link: '/dashboard/books' },
+		{ title: 'Author', icon: 'contact_page', link: '/dashboard/posts' },
+		{ title: 'Map', icon: 'route', link: '/dashboard/map' }
 	];
 
 	let isOpen = false;
